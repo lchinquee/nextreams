@@ -1,6 +1,14 @@
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 
+var questionsEl = document.querySelector("#quiz-questions");
+var optionsEl = document.querySelector("#multiple-choice");
+var answerEl = document.querySelector("#results");
+var countdownTimer = document.querySelector("#countdown-timer");
+var nextQuestion = document.querySelector("#next-question");
+
+var questionList = 0;
+var count = 0;
 
 // Code Quiz Questions
 var questions = [
@@ -26,17 +34,43 @@ var questions = [
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        options: ["JavaScript", "Terminal/Bash", "For Loops", "console.log"],
+        options: ["JavaScript", "Terminal/Bash", "for loops", "console.log"],
         correctAnswer: "console.log",
     },
 ];
 
+var questionDisplay = function() {
+    //Question generation
+    questionsEl.textContent = questions[questionList].question;
+    optionsEl.innerHTML = "";
+
+    //Question options
+    var options = questions[questionList].options;
+    var optionsEnd = options.length;
+
+    for (var i = 0; i < options.length; i++) {
+        var questionsListNewItem = document.createElement("li");
+        questionsListNewItem.textContent = options[i];
+        optionsEl.append(questionsListNewItem);
+    }
+
+}
+
+questionDisplay();
+
+// Event listener to Next Question button
+nextQuestion.addEventListener("click", function() {
+    questionList++;
+
+    if (questionList < 5) {
+        questionDisplay();
+    }
+    // NEED TO INCLUDE ELSE TO NAVIGATE TO SCORING AND INITIAL ENTRY
+});
 
 // WHEN I answer a question
 // THEN I am presented with another question
-    // QUESTIONS
-        //
-            //Answers: 
+   
 
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock

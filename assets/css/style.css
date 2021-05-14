@@ -1,6 +1,11 @@
 /* NEED
-Purple buttons with rounded edges
-Hover color change over buttons
+Purple buttons with rounded edges*/
+
+.mc-options {
+    list-style: none;
+}
+
+/*Hover color change over buttons
 Large font for quiz questions
 Medium to small font for multiple choice answers
 Media queries for different screen sizes */
