@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,9 @@
         <title>Coding Quiz</title>
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
+
     <body>
-        <header>
+        <header id="start">
             <!-- High scores link -->
             <div>
                 <button id="high-scores">View High Scores</button>
@@ -17,25 +19,42 @@
             <div class="timer">
                 <p>Time:</p>
                 <div id="countdown-timer"></div>
-            </div>            
-        </header>
-        <div id="clear">
-            <div>
-                <!-- Initial Start Quiz display -->
-                <div id="start-quiz"></div>
-                <!-- Quiz Contents -->
-                <div class="quiz-content">
-                    <div id="quiz-questions"></div>
-                    <ul id="multiple-choice" class="mc-options"></ul>
-                    <div id="results"></div>
-                </div>                        
             </div>
+        </header>
+
+        <!-- Initial Start Quiz display -->
+        <section>            
+            <div id="start-quiz"></div>
+            <!-- Quiz Contents -->
+            <div class="quiz-content">
+                <div id="quiz-questions"></div>
+                <ul id="multiple-choice" class="mc-options"></ul>
+                <div id="results"></div>
+            </div>
+        </section>
+
+        <!-- End Quiz Display -->
+        <section>
+            <!-- End Quiz -->
+            <div id="end-quiz"></div>
+            <!-- Save Score -->
             <form id="form" action="">
                 <input type="text" id="initials"></input>
-                <button id="btn">Submit</button>
-                <ul id="listScores"></ul>
+                <button id="btn">Submit</button>                
             </form>
-        </div>        
+        </section>
+
+        <!-- View Scores Display -->
+        <section>            
+            <div id="scores-list"></div>
+            <div>
+                <ul id="list-players"></ul>
+            </div>
+            <div id="view-scores-buttons">
+                <button id="backBtn">Back</button>
+                <button id="clearScores">Clear High Scores</button>
+            </div>
+        </section>
 
         <script src="./assets/js/script.js"></script>
     </body>
