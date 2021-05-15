@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Quiz</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>    
-    <div id="quiz-questions"></div>
-    <ul id="multiple-choice" class="mc-options"></ul>
-    <div id="results"></div>
-    <div id="countdown-timer"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Coding Quiz</title>
+        <link rel="stylesheet" href="./assets/css/style.css">
+    </head>
+    <body>
+        <header>
+            <!-- High scores link -->
+            <div>
+                <button id="high-scores">View High Scores</button>
+            </div>
+            <!-- Countdown Timer -->
+            <div class="timer">
+                <p>Time:</p>
+                <div id="countdown-timer"></div>
+            </div>            
+        </header>
+        <div>
+            <!-- Initial Start Quiz display -->
+            <div id="start-quiz"></div>
+            <!-- Quiz Contents -->
+            <div class="quiz-content">
+                <div id="quiz-questions"></div>
+                <ul id="multiple-choice" class="mc-options"></ul>
+                <div id="results"></div>
+            </div>                        
+        </div>
 
-    <div>
-        <button id="next-question" class="btn">Next Question</button>
-    </div>
+        <script src="./assets/js/script.js"></script>
+    </body>
 
-    <script src="./assets/js/script.js"></script>
-</body>
 </html>

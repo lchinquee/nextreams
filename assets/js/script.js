@@ -1,14 +1,19 @@
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 
+var startQuizEl = document.querySelector("#start-quiz");
 var questionsEl = document.querySelector("#quiz-questions");
 var optionsEl = document.querySelector("#multiple-choice");
 var answerEl = document.querySelector("#results");
-var countdownTimer = document.querySelector("#countdown-timer");
+var countdownTimerEl = document.querySelector("#countdown-timer");
+var scoresEl = document.querySelector("#high-scores");
+
 var nextQuestion = document.querySelector("#next-question");
 
 var questionList = 0;
 var count = 0;
+var time = 120;
+var timeInterval;
 
 // Code Quiz Questions
 var questions = [
@@ -39,15 +44,64 @@ var questions = [
     },
 ];
 
+var startQuiz = function() {
+    clearInterval(timeInterval);
+
+    countdownTimerEl.textContent = time;
+
+    //Start quiz header
+    var headerEl = document.body;
+    headerEl = document.createElement("div");
+    headerEl.className = "start-header";
+    headerEl.innerHTML = "<h1>" + "Coding Quiz Challenge" + "</h1>";
+    startQuizEl.appendChild(headerEl);
+
+    //Start quiz description
+    var quizDescriptionEL = document.createElement("div");
+    quizDescriptionEL.className = "description";
+    quizDescriptionEL.innerHTML = "<p>" + "Try to answer the following code-related questions within the time limit." + "<br>" + "Keep in mind that incorrect answers will penalize your score/time by ten seconds!" + "</p>";
+    startQuizEl.appendChild(quizDescriptionEL);
+
+    //Start quiz button
+    var startButtonEl = document.createElement("button");
+    startButtonEl.textContent = "Start";
+    startButtonEl.className = "btn start-btn";
+    startButtonEl.setAttribute("onclick", "questionDisplay();")
+    startQuizEl.appendChild(startButtonEl);
+}
+
+var end = function() {
+    clearInterval(timeInterval);
+    var endDisplay = document.body;
+    endDisplay.innerHTML = "All Done! Your final score is " + count;
+
+}
+
+var timer = function() {
+    time--;
+    countdownTimerEl.textContent = time;
+    if (time <=0) {
+        end();
+    }
+}
+
 var questionDisplay = function() {
+    if (time === 0) {
+        end();
+        return;
+    }
+
+    timeInterval = setInterval(timer, 1000);
+
     //Question generation
     questionsEl.textContent = questions[questionList].question;
     optionsEl.innerHTML = "";
+    answerEl.innerHTML = "";
 
     //Question options
     var options = questions[questionList].options;
-    var optionsEnd = options.length;
 
+    //List out the options
     for (var i = 0; i < options.length; i++) {
         var questionsListNewItem = document.createElement("li");
         questionsListNewItem.textContent = options[i];
@@ -56,17 +110,47 @@ var questionDisplay = function() {
 
 }
 
-questionDisplay();
-
-// Event listener to Next Question button
-nextQuestion.addEventListener("click", function() {
+// Next Question goes to next question in the array
+var nextQuestion = function() {
     questionList++;
-
-    if (questionList < 5) {
-        questionDisplay();
+    if (questionList === questions.length) {
+        time = 0;
     }
-    // NEED TO INCLUDE ELSE TO NAVIGATE TO SCORING AND INITIAL ENTRY
-});
+    questionDisplay();
+}
+
+// Check to see if user answer is correct
+var answerChecks = function(event) {
+    clearInterval(timeInterval);
+    // if (questionList <= 4) {
+        if (event.target.matches("li")) {
+            var optionSelected = event.target.textContent;
+            // Score count
+            if (optionSelected === questions[questionList].correctAnswer) {
+                answerEl.textContent = "Correct!";
+                count = count + 20;
+            } else {
+                // Answer is wrong, subtract time
+                answerEl.textContent = "Wrong!";
+                time = time - 10;
+            }
+        }
+        setTimeout(nextQuestion, 1000);
+    // } else {
+    //     // Include a function here to display save score
+    // }
+    
+}
+
+var highScores = function() {
+    //Placehodler for high scores page
+    console.log(time);
+}
+
+optionsEl.addEventListener("click", answerChecks);
+scoresEl.addEventListener("click", highScores);
+
+startQuiz();
 
 // WHEN I answer a question
 // THEN I am presented with another question
