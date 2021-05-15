@@ -7,6 +7,8 @@ var optionsEl = document.querySelector("#multiple-choice");
 var answerEl = document.querySelector("#results");
 var countdownTimerEl = document.querySelector("#countdown-timer");
 var scoresEl = document.querySelector("#high-scores");
+var formEl = document.querySelector("#form");
+// var clearEl = document.querySelector("#clear");
 
 var nextQuestion = document.querySelector("#next-question");
 
@@ -44,15 +46,17 @@ var questions = [
     },
 ];
 
-var startQuiz = function() {
+var startQuiz = function () {
     clearInterval(timeInterval);
 
     countdownTimerEl.textContent = time;
 
+    formEl.innerHTML = "";
+
     //Start quiz header
     var headerEl = document.body;
     headerEl = document.createElement("div");
-    headerEl.className = "start-header";
+    headerEl.className = "header";
     headerEl.innerHTML = "<h1>" + "Coding Quiz Challenge" + "</h1>";
     startQuizEl.appendChild(headerEl);
 
@@ -66,32 +70,47 @@ var startQuiz = function() {
     var startButtonEl = document.createElement("button");
     startButtonEl.textContent = "Start";
     startButtonEl.className = "btn start-btn";
-    startButtonEl.setAttribute("onclick", "questionDisplay();")
+    startButtonEl.onclick = function() {questionDisplay()};
     startQuizEl.appendChild(startButtonEl);
 }
 
-var end = function() {
+var end = function () {
     clearInterval(timeInterval);
-    var endDisplay = document.body;
-    endDisplay.innerHTML = "All Done! Your final score is " + count;
 
+    //Final score display
+    var endDisplay = document.body;
+    endDisplay.innerHTML = "<h2>" + "All Done!" + "</h2><span class='description'>" + "Your final score is " + count + ". </span>";
+
+    // var btn = document.getElementById('btn');
+    // btn.addEventListener("click", function (event) {
+    //     event.preventDefault();
+    //     var initial = document.getElementById("initials").value;
+    //     localStorage.setItem(initial, count);
+
+    //     var scoreList = localStorage.getItem(initial);
+    //     var playerInitials = localStorage.key(i);
+    //     console.log(playerInitials);
+    //     console.log(scoreList);
+    // });
 }
 
-var timer = function() {
+var timer = function () {
     time--;
     countdownTimerEl.textContent = time;
-    if (time <=0) {
+    if (time <= 0) {
         end();
     }
 }
 
-var questionDisplay = function() {
+var questionDisplay = function () {
     if (time === 0) {
         end();
         return;
     }
 
     timeInterval = setInterval(timer, 1000);
+
+    startQuizEl.innerHTML = "";
 
     //Question generation
     questionsEl.textContent = questions[questionList].question;
@@ -111,7 +130,7 @@ var questionDisplay = function() {
 }
 
 // Next Question goes to next question in the array
-var nextQuestion = function() {
+var nextQuestion = function () {
     questionList++;
     if (questionList === questions.length) {
         time = 0;
@@ -120,29 +139,29 @@ var nextQuestion = function() {
 }
 
 // Check to see if user answer is correct
-var answerChecks = function(event) {
+var answerChecks = function (event) {
     clearInterval(timeInterval);
     // if (questionList <= 4) {
-        if (event.target.matches("li")) {
-            var optionSelected = event.target.textContent;
-            // Score count
-            if (optionSelected === questions[questionList].correctAnswer) {
-                answerEl.textContent = "Correct!";
-                count = count + 20;
-            } else {
-                // Answer is wrong, subtract time
-                answerEl.textContent = "Wrong!";
-                time = time - 10;
-            }
+    if (event.target.matches("li")) {
+        var optionSelected = event.target.textContent;
+        // Score count
+        if (optionSelected === questions[questionList].correctAnswer) {
+            answerEl.textContent = "Correct!";
+            count = count + 20;
+        } else {
+            // Answer is wrong, subtract time
+            answerEl.textContent = "Wrong!";
+            time = time - 10;
         }
-        setTimeout(nextQuestion, 1000);
+    }
+    setTimeout(nextQuestion, 1000);
     // } else {
     //     // Include a function here to display save score
     // }
-    
+
 }
 
-var highScores = function() {
+var highScores = function () {
     //Placehodler for high scores page
     console.log(time);
 }
@@ -154,7 +173,7 @@ startQuiz();
 
 // WHEN I answer a question
 // THEN I am presented with another question
-   
+
 
 // WHEN I answer a question incorrectly
 // THEN time is subtracted from the clock

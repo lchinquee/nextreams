@@ -19,16 +19,23 @@
                 <div id="countdown-timer"></div>
             </div>            
         </header>
-        <div>
-            <!-- Initial Start Quiz display -->
-            <div id="start-quiz"></div>
-            <!-- Quiz Contents -->
-            <div class="quiz-content">
-                <div id="quiz-questions"></div>
-                <ul id="multiple-choice" class="mc-options"></ul>
-                <div id="results"></div>
-            </div>                        
-        </div>
+        <div id="clear">
+            <div>
+                <!-- Initial Start Quiz display -->
+                <div id="start-quiz"></div>
+                <!-- Quiz Contents -->
+                <div class="quiz-content">
+                    <div id="quiz-questions"></div>
+                    <ul id="multiple-choice" class="mc-options"></ul>
+                    <div id="results"></div>
+                </div>                        
+            </div>
+            <form id="form" action="">
+                <input type="text" id="initials"></input>
+                <button id="btn">Submit</button>
+                <ul id="listScores"></ul>
+            </form>
+        </div>        
 
         <script src="./assets/js/script.js"></script>
     </body>
