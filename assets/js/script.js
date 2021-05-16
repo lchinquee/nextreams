@@ -1,6 +1,3 @@
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-
 var startQuizEl = document.querySelector("#start-quiz");
 var questionsEl = document.querySelector("#quiz-questions");
 var optionsEl = document.querySelector("#multiple-choice");
@@ -57,8 +54,6 @@ var startQuiz = function () {
 
     countdownTimerEl.textContent = time;
 
-    // formEl.innerHTML = "";
-
     hide.style.display = "none";
     scoresButtons.style.display = "none";
 
@@ -104,11 +99,6 @@ var end = function () {
         var initial = document.getElementById("initials").value;
         localStorage.setItem(initial, count);
 
-        var scoreList = localStorage.getItem(initial);
-        var playerInitials = localStorage.key(initial);
-        console.log(playerInitials);
-        console.log(scoreList);
-
         endDisplay.innerHTML = "<h2>" + "All Done!" + "</h2><span class='description'>" + "Your final score of " + count + " has been saved! </span>";
     });
 }
@@ -117,6 +107,8 @@ var timer = function () {
     time--;
     countdownTimerEl.textContent = time;
     if (time <= 0) {
+        countdownTimerEl.textContent = time;
+        count = time;
         end();
     }
 }
@@ -165,14 +157,15 @@ var answerChecks = function (event) {
         // Answer is correct, increase score count
         if (optionSelected === questions[questionList].correctAnswer) {
             answerEl.textContent = "Correct!";
-            count = count + 20;
         } else {
             // Answer is wrong, subtract time
             answerEl.textContent = "Wrong!";
             time = time - 10;
         }
     }
-    setTimeout(nextQuestion, 1000);
+    count = time;
+    countdownTimerEl.textContent = time;
+    setTimeout(nextQuestion, 750);
 }
 
 var highScores = function () {
@@ -204,6 +197,7 @@ var highScores = function () {
         scoreLi = scoreLi.concat(parseInt(localStorage.getItem(names[i])));
     }
 
+    //Associates score with corresponding initials from localStorage
     scoreLiKey = scoreLi.map(String);
     scoreLi = scoreLi.sort((a, b) => b - a);
     scoreLiKeyNew = scoreLi.map(String);
@@ -213,8 +207,6 @@ var highScores = function () {
         namesFinal = namesFinal.concat(names[scoreIdx]);
         scoreAndName = scoreAndName.concat(' ' + namesFinal[j] + ' - ' + scoreLiKeyNew[j]);
     }
-    console.log(namesFinal);
-    console.log(scoreLi);
 
     //List out the scores
     for (var k = 0; k < scoreAndName.length; k++) {
@@ -241,20 +233,3 @@ optionsEl.addEventListener("click", answerChecks);
 scoresEl.addEventListener("click", highScores);
 
 startQuiz();
-
-// WHEN I answer a question
-// THEN I am presented with another question
-
-
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-
-// WHEN the game is over
-// THEN I can save my initials and score
-    // <textarea for initial entry
-
-// View high scores screen
-    // Ordered list of high scores
