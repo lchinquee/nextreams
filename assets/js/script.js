@@ -10,6 +10,7 @@ var scoresEl = document.querySelector("#high-scores");
 var formEl = document.querySelector("#form");
 var endQuizEl = document.querySelector("#end-quiz");
 var scoresListEl = document.querySelector("#scores-list");
+var playerListEl = document.querySelector("#list-players");
 var nextQuestion = document.querySelector("#next-question");
 
 var questionList = 0;
@@ -192,16 +193,47 @@ var highScores = function () {
     listEl.className = "header";
     listEl.innerHTML = "<h2>" + "High Scores" + "</h2>";
     scoresListEl.appendChild(listEl);
-    
+
     //High scores list
+    var names = [];
+    var scoreLi = [];
+    var namesFinal = [];
+
+    for (var i = 0; i < localStorage.length; i++) {
+        names = names.concat(localStorage.key(i));
+        scoreLi = scoreLi.concat(parseInt(localStorage.getItem(names[i])));
+    }
+
+    scoreLiKey = scoreLi.map(String);
+    scoreLi = scoreLi.sort((a, b) => b - a);
+    scoreLiKeyNew = scoreLi.map(String);
+    scoreAndName = [];
+    for (var j = 0; j < localStorage.length; j++) {
+        scoreIdx = scoreLiKey.indexOf(scoreLiKeyNew[j]);
+        namesFinal = namesFinal.concat(names[scoreIdx]);
+        scoreAndName = scoreAndName.concat(' ' + namesFinal[j] + ' - ' + scoreLiKeyNew[j]);
+    }
+    console.log(namesFinal);
+    console.log(scoreLi);
+
+    //List out the scores
+    for (var k = 0; k < scoreAndName.length; k++) {
+        var scoreListNewItem = document.createElement("li");
+        scoreListNewItem.textContent = scoreAndName[k];
+        playerListEl.append(scoreListNewItem);
+    }
 
     //Back button
-    backBtn.addEventListener("click", function(event) {
+    backBtn.addEventListener("click", function() {
         window.location.reload();
     });
-    console.log(time);
+    
 
     //Clear scores button
+    clearScores.addEventListener("click", function() {
+       localStorage.clear();
+       playerListEl.innerHTML = "";
+    });
 
 }
 
