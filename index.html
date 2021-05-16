@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <header id="start">
+        <header id="start" class="style-top">
             <!-- High scores link -->
             <div>
                 <button id="high-scores">View High Scores</button>
@@ -23,18 +23,18 @@
         </header>
 
         <!-- Initial Start Quiz display -->
-        <section>            
-            <div id="start-quiz"></div>
+        <section class="container">            
+            <div id="start-quiz" class="start-style"></div>
             <!-- Quiz Contents -->
             <div class="quiz-content">
                 <div id="quiz-questions"></div>
-                <ul id="multiple-choice" class="mc-options"></ul>
+                <ul id="multiple-choice" class="lists"></ul>
                 <div id="results"></div>
             </div>
         </section>
 
         <!-- End Quiz Display -->
-        <section>
+        <section class="style-end">
             <!-- End Quiz -->
             <div id="end-quiz"></div>
             <!-- Save Score -->
@@ -46,13 +46,13 @@
         </section>
 
         <!-- View Scores Display -->
-        <section>            
+        <section class="style-scores">            
             <div id="scores-list"></div>
             <div>
-                <ul id="list-players"></ul>
+                <ol id="list-players" class="lists"></ol>
             </div>
             <div id="view-scores-buttons">
-                <button id="backBtn">Back</button>
+                <button id="backBtn">Go Back</button>
                 <button id="clearScores">Clear High Scores</button>
             </div>
         </section>

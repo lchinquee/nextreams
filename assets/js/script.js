@@ -72,7 +72,7 @@ var startQuiz = function () {
 
     //Start quiz button
     var startButtonEl = document.createElement("button");
-    startButtonEl.textContent = "Start";
+    startButtonEl.textContent = "Start Quiz";
     startButtonEl.className = "btn start-btn";
     startButtonEl.onclick = function () { questionDisplay() };
     startQuizEl.appendChild(startButtonEl);
@@ -107,7 +107,6 @@ var timer = function () {
     time--;
     countdownTimerEl.textContent = time;
     if (time <= 0) {
-        countdownTimerEl.textContent = time;
         count = time;
         end();
     }

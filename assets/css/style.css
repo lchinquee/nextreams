@@ -1,11 +1,146 @@
-/* NEED
-Purple buttons with rounded edges*/
-
-.mc-options {
-    list-style: none;
+* {
+    box-sizing: border-box;
 }
 
-/*Hover color change over buttons
-Large font for quiz questions
-Medium to small font for multiple choice answers
+:root {
+    --primary-color: rgb(49, 0, 128);
+    --secondary-color: rgb(157, 58, 238);
+    --tertiary-color: white;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    margin: 5% auto 2%;
+}
+
+.start-style, .quiz-content, .style-end {
+    text-align: center;
+}
+
+.style-scores div {
+    margin: 0% 40%;
+}
+
+div.header {
+    margin: 0%;
+}
+
+.quiz-content {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 35% 0%;
+    text-align: left;
+}
+
+.quiz-content ul {
+    padding: 0px;
+    margin: 0px 310px 0px 0px;
+}
+
+.quiz-content ul li {
+    list-style: none;
+    margin: 7px 0px;
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    border-radius: 8px;
+}
+
+.quiz-content ul li:hover {
+    background-color: var(--secondary-color);
+}
+
+#quiz-questions {
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+#end-quiz {
+    margin: 0% 35%;
+    text-align: left;
+}
+
+#form {
+    margin: 1% 35%;
+    text-align: left;
+}
+
+.end-display h2 {
+    margin: 0% auto 2%;
+}
+
+#list-players {
+    padding: 0px 30px;
+    background-color: rgb(209, 204, 218);
+}
+
+/* Buttons Styling */
+button {
+    display: inline-block;
+    border: none;
+    padding: 8px 15px;
+    margin: 0;
+    text-decoration: none;
+    background: var(--primary-color);
+    color: var(--tertiary-color);
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#high-scores {
+    display: inline-block;
+    border: none;
+    padding: 8px 15px;
+    margin: 0;
+    text-decoration: none;
+    background: none;
+    color: var(--primary-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover {
+    background: var(--secondary-color);
+    color: var(--tertiary-color);
+}
+
+#high-scores:hover {
+    display: inline-block;
+    border: none;
+    padding: 8px 15px;
+    margin: 0;
+    text-decoration: none;
+    background: var(--secondary-color);
+    color: var(--tertiary-color);
+    border-radius: 8px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Top of the screen */
+.style-top {
+    display: flex;
+    justify-content: space-between;
+    margin: 2% 10%;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+}
+
+/*Styling for correct/wrong wording
 Media queries for different screen sizes */
