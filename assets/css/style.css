@@ -6,12 +6,15 @@
     --primary-color: rgb(49, 0, 128);
     --secondary-color: rgb(157, 58, 238);
     --tertiary-color: white;
+    --quaternary-color: grey;
+    --quinary-color: rgb(209, 204, 218);
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/*Quiz Style Start*/
 h1 {
     margin: 5% auto 2%;
 }
@@ -51,6 +54,7 @@ div.header {
 
 .quiz-content ul li:hover {
     background-color: var(--secondary-color);
+    cursor: pointer;
 }
 
 #quiz-questions {
@@ -74,10 +78,23 @@ div.header {
 
 #list-players {
     padding: 0px 30px;
-    background-color: rgb(209, 204, 218);
+    background-color: var(--quinary-color);
 }
 
-/* Buttons Styling */
+#results {
+    font-size: large;
+    font-style: italic;
+    margin: 5px 0px;
+    color: var(--quaternary-color);
+}
+
+#results p {
+    padding: 8px;
+    border-top: solid var(--quaternary-color);
+}
+/*Quiz Style End*/
+
+/* Buttons Style Start */
 button {
     display: inline-block;
     border: none;
@@ -94,43 +111,28 @@ button {
     -moz-appearance: none;
 }
 
+#btn {
+    padding: 5px 10px;
+}
+
 #high-scores {
-    display: inline-block;
-    border: none;
-    padding: 8px 15px;
-    margin: 0;
-    text-decoration: none;
     background: none;
     color: var(--primary-color);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    text-align: center;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
 
 button:hover {
     background: var(--secondary-color);
     color: var(--tertiary-color);
+    cursor: pointer;
 }
 
 #high-scores:hover {
-    display: inline-block;
-    border: none;
-    padding: 8px 15px;
-    margin: 0;
-    text-decoration: none;
     background: var(--secondary-color);
     color: var(--tertiary-color);
-    border-radius: 8px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    text-align: center;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
+/*Button Style End*/
 
-/* Top of the screen */
+/*Top of Screen Style Start*/
 .style-top {
     display: flex;
     justify-content: space-between;
@@ -141,6 +143,66 @@ button:hover {
     display: flex;
     align-items: center;
 }
+/*Top of Screen Style End*/
 
-/*Styling for correct/wrong wording
-Media queries for different screen sizes */
+/*Media Queries Start*/
+@media screen and (max-width: 980px) {
+    .quiz-content {
+        margin: 5% 20% 0%;
+    }
+    
+    .quiz-content ul {
+        margin: 0px 390px 0px 0px;
+    }
+    #end-quiz {
+        margin: 0% 30%;
+    }
+    
+    #form {
+        margin: 1% 30%;
+    }
+    .style-scores div {
+        margin: 0% 35%;
+    }
+    div.header {
+        margin: 0%;
+    }
+}
+
+@media screen and (max-width:768px) {   
+    .quiz-content ul {
+        margin: 0px 270px 0px 0px;
+    }
+    #end-quiz {
+        margin: 0% 25%;
+    }
+    
+    #form {
+        margin: 1% 25%;
+    }
+
+    .style-scores div {
+        margin: 0% 30%;
+    }
+    div.header {
+        margin: 0%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .quiz-content ul {
+        margin: 0px;
+    }
+    #btn {
+        padding: 5px 20px;
+        margin: 10px 0px 10px 100px;
+    }
+
+    .style-scores div {
+        margin: 0% 25%;
+    }
+    div.header {
+        margin: 0%;
+    }
+}
+/*Media Queries End*/

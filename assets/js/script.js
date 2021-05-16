@@ -150,18 +150,23 @@ var nextQuestion = function () {
 
 // Check to see if user answer is correct
 var answerChecks = function (event) {
-    clearInterval(timeInterval);    
+    clearInterval(timeInterval);
     if (event.target.matches("li")) {
         var optionSelected = event.target.textContent;
         // Answer is correct, increase score count
         if (optionSelected === questions[questionList].correctAnswer) {
-            answerEl.textContent = "Correct!";
+            var ansCorrect = document.createElement("p");
+            ansCorrect.innerHTML = "Correct!";
+            answerEl.appendChild(ansCorrect);
         } else {
-            // Answer is wrong, subtract time
-            answerEl.textContent = "Wrong!";
+            var ansWrong = document.createElement("p");
+            ansWrong.innerHTML = "Wrong!";
+            answerEl.appendChild(ansWrong);   
+            // Answer is wrong, subtract time     
             time = time - 10;
         }
     }
+    //Track score
     count = time;
     countdownTimerEl.textContent = time;
     setTimeout(nextQuestion, 750);
@@ -215,15 +220,15 @@ var highScores = function () {
     }
 
     //Back button
-    backBtn.addEventListener("click", function() {
+    backBtn.addEventListener("click", function () {
         window.location.reload();
     });
-    
+
 
     //Clear scores button
-    clearScores.addEventListener("click", function() {
-       localStorage.clear();
-       playerListEl.innerHTML = "";
+    clearScores.addEventListener("click", function () {
+        localStorage.clear();
+        playerListEl.innerHTML = "";
     });
 
 }
